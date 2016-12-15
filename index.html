@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">        
+       
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <title>BELLOSOUND</title>
+        <link href='main.css' rel='stylesheet' type='text/css'>
+        <style>
+          
+        </style>
+    </head>
+
+    <body>    
+      <audio controls></audio>
+    
+      <div id="header" title="You can also drag & drop audio files.">
+        <img src="soundcloud.png"/>
+        <button onclick="change()" >change track</button>
+        <button onclick="maximize()">fullscreen</button>
+        <div id="info"></div>
+        
+      </div>
+      <canvas></canvas>
+      <script src="clubber.js"></script>
+      <script src="twgl.min.js"></script>
+      <script src="shader.js"></script>
+      <script src="common.js"></script>
+      <script src="main.js"></script>
+    </body>
+</html>
