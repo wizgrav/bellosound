@@ -15,9 +15,9 @@ function getChunk(s) {
 function init () {
   
   var txt = [
-    "#define MUSIC1 smoothstep(iMusic[1].y * iMusic[0].x,1.6 + iMusic[0].y * iMusic[1].x, dot(iMusic[0].xyz, iMusic[1].xyz))",
-    "#define MUSIC2 smoothstep(iMusic[2].y * 0.66, 2. - iMusic[2].y,length(iMusic[2].xyw))",
-    "#define MUSIC3 smoothstep(iMusic[3].y*iMusic[2].y * 0.66, 0.5 + iMusic[3].y * iMusic[2].y, dot(iMusic[3].xyw, iMusic[2].xyw))",
+    "#define MUSIC1 mix(0.6,0.9,smoothstep(min(iMusic[0].w,iMusic[1].w)*0.9,1.0, min(iMusic[0].z,iMusic[1].z)))",
+    "#define MUSIC2 0.2 + 0.8 * smoothstep(iMusic[2].y * iMusic[3].y,1.4 + iMusic[2].y * iMusic[3].x, dot(iMusic[3].yz, iMusic[2].yz))",
+    "#define MUSIC3 0.33 + 0.66 * smoothstep(iMusic[1].y * iMusic[2].y,1.4 + iMusic[2].y * iMusic[1].x, dot(iMusic[1].yz, iMusic[2].yz))",
     "",
     "void mainImage(out vec4 color, vec2 fragCoord) {",
     " vec2 uv = fragCoord/iResolution.xy;",
@@ -26,7 +26,7 @@ function init () {
     " vec3 rv = vec3(0.);",
     " vec2 center = vec2(0.5 * aspect,0.5);",
     " rv.x = max(0.2, MUSIC1);",
-    " rv.y = mix(0.05, rv.x * 0.6, MUSIC2);",
+    " rv.y = mix(0.05, rv.x * 0.8, MUSIC2);",
     " rv.z = mix(rv.y * 1.2, rv.x * 0.9, MUSIC3);",
     " rv *= 0.49;",
     " float d = distance(center, uv);",
@@ -34,7 +34,7 @@ function init () {
     " float c1 = smoothstep(rv.x - f, rv.x + f, d);",
     " float c2 = smoothstep(rv.y - f, rv.y + f, d);",
     " float c3 = smoothstep(rv.z - f, rv.z + f, d);",
-    " color.rgb = vec3(c3 < 1. ? ( c2 < 1. ? c2 : 1.0 - c3):c1);",
+    " color.rgb = vec3(c3 < 1. ? ( c2 < 1. ? mix(iMusic[2].w * iMusic[2].y,c2, c2) : 1.0 - c3):mix(iMusic[0].w * iMusic[0].y,c1, c1));",
     "}"
   ].join("\n");  
   var s = new Shader(gl, { 

@@ -17,7 +17,7 @@ var data = {}, needsCorrection = false;
 var clubber = new Clubber({thresholdFactor:0, size: 4096});
 clubber.listen(audio);
 
-var smoothArray = [0.07,0.08,0.08,0.07];
+var smoothArray = [0.09,0.09,0.09,0.08];
 
 if(getParameterByName("smooth")) {
   smoothArray = getParameterByName("smooth").split(",").forEach(function(s,i){
