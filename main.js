@@ -15,7 +15,7 @@ function getChunk(s) {
 function init () {
   
   var txt = [
-    "#define MUSIC1 mix(0.6,0.9,smoothstep(min(iMusic[0].w,iMusic[1].w)*0.9,1.0, min(iMusic[0].z,iMusic[1].z)))",
+    "#define MUSIC1 mix(0.5,1.0,smoothstep(min(iMusic[0].w,iMusic[1].w)*0.9,0.9, min(iMusic[0].z,iMusic[1].z)))",
     "#define MUSIC2 0.2 + 0.8 * smoothstep(iMusic[2].y * iMusic[3].y,1.4 + iMusic[2].y * iMusic[3].x, dot(iMusic[3].yz, iMusic[2].yz))",
     "#define MUSIC3 0.33 + 0.66 * smoothstep(iMusic[1].y * iMusic[2].y,1.4 + iMusic[2].y * iMusic[1].x, dot(iMusic[1].yz, iMusic[2].yz))",
     "",

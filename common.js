@@ -17,7 +17,7 @@ var data = {}, needsCorrection = false;
 var clubber = new Clubber({thresholdFactor:0, size: 4096});
 clubber.listen(audio);
 
-var smoothArray = [0.09,0.09,0.09,0.08];
+var smoothArray = [0.09,0.09,-0.09,-0.08];
 
 if(getParameterByName("smooth")) {
   smoothArray = getParameterByName("smooth").split(",").forEach(function(s,i){
@@ -28,10 +28,10 @@ if(getParameterByName("smooth")) {
 var step = 1000/60;
 
 data.bands = [
-  clubber.band({from:1, to:32, smooth: smoothArray, step: step }),
-  clubber.band({from:32, to:48, smooth: smoothArray, step: step }),
-  clubber.band({from:48, to:64, smooth: smoothArray, step: step }),
-  clubber.band({from:64, to:96, smooth: smoothArray, step: step })
+  clubber.band({from:1, to:32, smooth: [0.09,0.09,-0.09,-0.08], step: step }),
+  clubber.band({from:32, to:48, smooth: [0.09,0.09,0.09,0.08], step: step }),
+  clubber.band({from:48, to:64, smooth: [0.09,0.09,0.09,0.08], step: step }),
+  clubber.band({from:64, to:96, smooth: [0.09,0.09,0.09,0.08], step: step })
 ];
 
 
